@@ -102,8 +102,8 @@ const sendOTP = (req, res) => {
       console.log("Error " + err);
     } else {
       console.log("Email sent successfully", data);
+      res.json({ msg: 'OTP sent successfully again' })
     }
-    res.json('Sent Successfully')
   });
 }
 const resendotp = (req, res) => {
@@ -133,15 +133,16 @@ const resendotp = (req, res) => {
     } else {
       console.log("Email sent successfully", data);
     }
+    res.json({ 'otp': otp, msg: 'OTP sent successfully again' })
   });
-  res.json({ 'otp': otp, mesg: 'OTP sent successfully again' })
 }
 const verifyotp = (req, res) => {
+
   if (req.body.otp == otp) {
-    res.send("You has been successfully registered");
+    res.status(200).json("You has been successfully registered");
   }
   else {
-    res.render('otp', { msg: 'otp is incorrect' });
+    res.status(400).json('otp', { msg: 'otp is incorrect' });
   }
 }
 const getMe = asyncHandler(async (req, res) => {

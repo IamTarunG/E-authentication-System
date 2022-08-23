@@ -7,11 +7,10 @@ import Qrcode from "./pages/qrcode";
 import Signup from "./pages/Signup";
 import Verify from "./pages/Verify";
 function App() {
-  const [qc, setQc] = useState(false)
   return (
     <div>
       <Router>
-        <Navbar qc={qc} setQc={setQc} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/signup" element={<Signup />} />

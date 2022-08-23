@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/users";
+// const API_URL = "http://localhost:5000/users";
 
 const getOTP = async (token) => {
     const config = {
@@ -8,7 +8,7 @@ const getOTP = async (token) => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const response = await axios.get(`${API_URL}/sendotp`, config);
+    const response = await axios.get("http://localhost:5000/users/sendotp", config);
     return response.data;
 };
 

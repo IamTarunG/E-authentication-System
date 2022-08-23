@@ -8,20 +8,20 @@ import { getOTP } from '../features/otp/otpSlice';
 function App() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { isSuccess, isError, otpResp, message } = useSelector(state => state.otp)
-    const sendOTP = async () => {
+    const { user } = useSelector(
+        (state) => state.auth
+    );
+    const { isSuccess, isError, otpResp, message } = useSelector((state) => state.otp)
+    const sendOTP = () => {
         console.log(otpResp)
         if (isError) {
             console.log(message);
         }
         if (isSuccess || otpResp) {
-            dispatch(getOTP())
             navigate("/verify");
         }
+        dispatch(getOTP())
     }
-    const { user } = useSelector(
-        (state) => state.auth
-    );
 
     // const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');

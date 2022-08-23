@@ -11,7 +11,7 @@ const initialState = {
 export const getOTP = createAsyncThunk("get/otp", async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await otpService.getOTP(token)
+        return await otpService.getOTP(token);
     } catch (error) {
         const message =
             (error.response && error.response.data && error.response.data.message) ||
@@ -40,7 +40,7 @@ export const otpSlice = createSlice({
             .addCase(getOTP.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.otpResp = action.payload
+                state.otpResp = action.payload;
             })
             .addCase(getOTP.rejected, (state, action) => {
                 state.isLoading = false;
