@@ -7,6 +7,7 @@ import Qrcode from "./pages/qrcode";
 import Signup from "./pages/Signup";
 import Verify from "./pages/Verify";
 function App() {
+
   return (
     <div>
       <Router>

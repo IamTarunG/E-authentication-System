@@ -11,18 +11,21 @@ function App() {
     const { user } = useSelector(
         (state) => state.auth
     );
-    const { isSuccess, isError, otpResp, message } = useSelector((state) => state.otp)
+    const { isSuccess, isError, otpResp, message, isLoading } = useSelector((state) => state.otp)
     const sendOTP = () => {
         console.log(otpResp)
+        // if (isLoading) {
+        //     console.log('Loading')
+        // }
         if (isError) {
             console.log(message);
         }
         if (isSuccess || otpResp) {
             navigate("/verify");
+            console.log(otpResp)
         }
         dispatch(getOTP())
     }
-
     // const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [file, setFile] = useState()
@@ -43,6 +46,13 @@ function App() {
     const handleSubmit = () => {
         QrScanner.scanImage(file).then((res) => setResult(res)).catch((err) => setError(true))
     }
+    // if (isLoading) {
+    //     return (
+    //         <div>
+    //             Loading...
+    //         </div>
+    //     )
+    // }
     return (
         <div>
 
@@ -63,6 +73,7 @@ function App() {
             <p>{result}</p>
             <p>{error && "No Qrcode found"}</p>
             <button onClick={sendOTP}>Send OTP</button>
+
         </div>
     );
 }

@@ -41,6 +41,7 @@ export const otpSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.otpResp = action.payload;
+
             })
             .addCase(getOTP.rejected, (state, action) => {
                 state.isLoading = false;

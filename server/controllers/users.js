@@ -99,10 +99,10 @@ const sendOTP = (req, res) => {
   };
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
-      console.log("Error " + err);
+      return res.json(400).json({ msg: "Cannot send", err: err })
     } else {
       console.log("Email sent successfully", data);
-      res.json({ msg: 'OTP sent successfully again' })
+      return res.status(200).json({ msg: 'OTP sent successfully', otp })
     }
   });
 }
@@ -129,21 +129,27 @@ const resendotp = (req, res) => {
   };
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
-      console.log("Error " + err);
+      return res.json(400).json({ msg: "Cannot send", err: err })
     } else {
       console.log("Email sent successfully", data);
+      return res.status(200).json({ 'otp': otp, msg: 'OTP sent successfully again' })
     }
-    res.json({ 'otp': otp, msg: 'OTP sent successfully again' })
   });
 }
 const verifyotp = (req, res) => {
 
-  if (req.body.otp == otp) {
-    res.status(200).json("You has been successfully registered");
+
+  if (req.body.otp === otp) {
+    return res.status(200).json("You have been successfully registered");
   }
-  else {
-    res.status(400).json('otp', { msg: 'otp is incorrect' });
-  }
+
+
+  return res.status(400).json({ msg: 'otp is incorrect' });
+
+
+
+
+
 }
 const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
