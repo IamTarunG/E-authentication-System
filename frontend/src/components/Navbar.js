@@ -5,6 +5,7 @@ import { logout, reset } from "../features/auth/authSlice";
 
 function Navbar() {
   const { user } = useSelector((state) => state.auth);
+  const { verifyResp } = useSelector((state) => state.verifyOTP)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onLogout = () => {

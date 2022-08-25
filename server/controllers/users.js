@@ -100,10 +100,10 @@ const sendOTP = (req, res) => {
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
       return res.json(400).json({ msg: "Cannot send", err: err })
-    } else {
-      console.log("Email sent successfully", data);
-      return res.status(200).json({ msg: 'OTP sent successfully', otp })
     }
+    console.log("Email sent successfully", data);
+
+    return res.status(200).json({ msg: 'OTP sent successfully', otp })
   });
 }
 const resendotp = (req, res) => {

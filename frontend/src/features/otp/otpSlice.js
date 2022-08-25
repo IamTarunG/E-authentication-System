@@ -11,7 +11,9 @@ const initialState = {
 export const getOTP = createAsyncThunk("get/otp", async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
+
         return await otpService.getOTP(token);
+
     } catch (error) {
         const message =
             (error.response && error.response.data && error.response.data.message) ||

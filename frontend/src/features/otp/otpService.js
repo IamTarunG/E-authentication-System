@@ -9,6 +9,7 @@ const getOTP = async (token) => {
         },
     };
     const response = await axios.get("http://localhost:5000/users/sendotp", config);
+    console.log(response)
     return response.data;
 };
 

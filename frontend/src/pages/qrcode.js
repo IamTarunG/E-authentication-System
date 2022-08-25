@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import QrScanner from 'qr-scanner';
 import QRCode from 'qrcode';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-import { getOTP } from '../features/otp/otpSlice';
+import { getOTP, reset } from '../features/otp/otpSlice';
 
 function App() {
     const navigate = useNavigate()
@@ -11,20 +11,26 @@ function App() {
     const { user } = useSelector(
         (state) => state.auth
     );
+
     const { isSuccess, isError, otpResp, message, isLoading } = useSelector((state) => state.otp)
-    const sendOTP = () => {
-        console.log(otpResp)
-        // if (isLoading) {
-        //     console.log('Loading')
-        // }
+    useEffect(() => {
+        if (isLoading) {
+            console.log('Loading...')
+        }
         if (isError) {
             console.log(message);
         }
         if (isSuccess || otpResp) {
-            navigate("/verify");
             console.log(otpResp)
+
         }
+        dispatch(reset());
+    }, [isError, isLoading, isSuccess, message, otpResp, navigate, dispatch]);
+    const sendOTP = () => {
+
         dispatch(getOTP())
+        navigate("/verify");
+
     }
     // const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
@@ -46,13 +52,13 @@ function App() {
     const handleSubmit = () => {
         QrScanner.scanImage(file).then((res) => setResult(res)).catch((err) => setError(true))
     }
-    // if (isLoading) {
-    //     return (
-    //         <div>
-    //             Loading...
-    //         </div>
-    //     )
-    // }
+    if (isLoading) {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
     return (
         <div>
 
