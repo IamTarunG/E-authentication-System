@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { getOTP, reset } from '../features/otp/otpSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from '../components/Spinner';
 function App(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -67,9 +68,7 @@ function App(props) {
 
     if (isLoading) {
         return (
-            <div>
-                Loading...
-            </div>
+            <Spinner />
         )
     }
     return (

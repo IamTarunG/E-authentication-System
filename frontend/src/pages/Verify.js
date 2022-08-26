@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 // import { useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../components/Spinner";
 function Verify(props) {
     // const [otp, setOTP] = useState('')
     const navigate = useNavigate()
@@ -41,9 +42,7 @@ function Verify(props) {
     }
     if (isLoading) {
         return (
-            <div>
-                Loading...
-            </div>
+            <Spinner />
         )
     }
     return (

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../components/Spinner";
 function Signup() {
   const [formData, setFromData] = useState({
     name: "",
@@ -50,7 +51,7 @@ function Signup() {
 
   };
   if (state.isLoading) {
-    return <h2>Loading...</h2>;
+    return <Spinner />;
   }
   return (
     <>

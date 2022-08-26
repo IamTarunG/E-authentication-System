@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { login, reset } from "../features/auth/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../components/Spinner";
 function Login() {
   const [formData, setFromData] = useState({
     email: "",
@@ -33,7 +34,7 @@ function Login() {
     dispatch(login(userData));
   };
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />
   }
   return (
     <>
