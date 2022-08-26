@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import { login, reset } from "../features/auth/authSlice";
 function Login() {
   const [formData, setFromData] = useState({
@@ -33,6 +34,7 @@ function Login() {
   }
   return (
     <div className="flex flex-col h-screen justify-evenly items-center">
+      <Navbar />
       <div>
         <input
           type="text"

@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
 
-function Navbar() {
+function Navbar(props) {
   const { user } = useSelector((state) => state.auth);
-  const { verifyResp } = useSelector((state) => state.verifyOTP)
+  // const { otpResp, isLoading } = useSelector((state) => state.otp)
+  // const { verifyResp } = useSelector((state) => state.verifyOTP)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onLogout = () => {

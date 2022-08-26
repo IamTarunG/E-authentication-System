@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { getOTP, reset } from '../features/otp/otpSlice';
 
-function App() {
+function App(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user } = useSelector(
@@ -27,7 +27,7 @@ function App() {
         dispatch(reset());
     }, [isError, isLoading, isSuccess, message, otpResp, navigate, dispatch]);
     const sendOTP = () => {
-
+        console.log(otpResp)
         dispatch(getOTP())
         navigate("/verify");
 
@@ -35,7 +35,7 @@ function App() {
     // const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [file, setFile] = useState()
-    const [result, setResult] = useState()
+    // const [result, setResult] = useState()
     const [error, setError] = useState(false)
     const generateQrCode = async () => {
         try {
@@ -50,7 +50,7 @@ function App() {
 
     }
     const handleSubmit = () => {
-        QrScanner.scanImage(file).then((res) => setResult(res)).catch((err) => setError(true))
+        QrScanner.scanImage(file).then((res) => props.setResult(res)).catch((err) => setError(true))
     }
     if (isLoading) {
         return (
@@ -76,7 +76,7 @@ function App() {
             <br />
             <input type="file" onChange={handleScanImage} />
             <button onClick={handleSubmit}>Scan Image</button>
-            <p>{result}</p>
+            <p>{props.result}</p>
             <p>{error && "No Qrcode found"}</p>
             <button onClick={sendOTP}>Send OTP</button>
 

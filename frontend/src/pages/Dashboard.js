@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import { getBooks, deleteBook } from "../features/books/bookSlice";
+import Navbar from "../components/Navbar";
 function Dashboard() {
+
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { books, isError, message } = useSelector((state) => state.book);
@@ -17,6 +19,7 @@ function Dashboard() {
 
   return (
     <div>
+      <Navbar />
       <h2 className="text-3xl align-middle text-center my-10">
         Welcome {user && user.name}
       </h2>

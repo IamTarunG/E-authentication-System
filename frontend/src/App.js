@@ -1,23 +1,24 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Qrcode from "./pages/qrcode";
 import Signup from "./pages/Signup";
 import Verify from "./pages/Verify";
 function App() {
-
+  const [result, setResult] = useState(null)
+  const [otp, setOTP] = useState('')
   return (
     <div>
       <Router>
-        <Navbar />
+        {/* <Navbar result={result} otp={otp} /> */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/auth" element={<Qrcode />} />
-          <Route path="/verify" element={<Verify />} />
+          <Route path="/auth" element={<Qrcode result={result} setResult={setResult} />} />
+          <Route path="/verify" element={<Verify result={result} otp={otp} setOTP={setOTP} />} />
         </Routes>
       </Router>
     </div>
