@@ -39,6 +39,7 @@ function Login() {
     <>
       <Navbar />
       <div className="flex flex-col h-screen justify-evenly items-center">
+        <p className="text-2xl">E authentication System</p>
         <div className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-72 justify-evenly w-1/5">
           <input
             type="text"
