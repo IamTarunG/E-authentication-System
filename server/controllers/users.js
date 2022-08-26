@@ -23,10 +23,10 @@ const signUpUser = asyncHandler(async (req, res) => {
   try {
     const userExist = await User.findOne({ email: email });
     if (!email || !password || !name) {
-      res.status(400).json({ message: "Please all fileds" });
+      return res.status(400).json({ message: "Please all fileds" });
     }
     if (userExist) {
-      res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ message: "User already exists" });
 
     } else {
       if (result.is_reachable === 'safe') {
@@ -39,7 +39,7 @@ const signUpUser = asyncHandler(async (req, res) => {
           password: hashedPassword,
         });
         if (user) {
-          res.status(200).json({
+          return res.status(200).json({
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -48,11 +48,11 @@ const signUpUser = asyncHandler(async (req, res) => {
         }
       }
       else {
-        res.status(400).json('Invalid Email entered')
+        return res.status(400).json('Invalid Email entered')
       }
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    return res.status(400).json(error.message);
   }
 });
 const loginUser = asyncHandler(async (req, res) => {
@@ -61,19 +61,19 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      res.status(200).json({
+      return res.status(200).json({
         _id: user.id,
         name: user.name,
         email: user.email,
         token: generateToke(user._id),
       });
     } else {
-      res.status(400).json({ message: "Not correct user" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
 
 
   } catch (error) {
-    res.status(400).json(error.message);
+    return res.status(400).json(error.message);
   }
 });
 const sendOTP = (req, res) => {

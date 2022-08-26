@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Qrcode from "./pages/qrcode";
 import Signup from "./pages/Signup";
 import Verify from "./pages/Verify";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const [result, setResult] = useState(null)
   const [otp, setOTP] = useState('')
@@ -21,6 +23,7 @@ function App() {
           <Route path="/verify" element={<Verify result={result} otp={otp} setOTP={setOTP} />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

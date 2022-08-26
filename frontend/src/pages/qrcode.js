@@ -4,7 +4,8 @@ import QRCode from 'qrcode';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { getOTP, reset } from '../features/otp/otpSlice';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -23,6 +24,8 @@ function App(props) {
         if (isSuccess || otpResp) {
             console.log(otpResp)
 
+
+
         }
         dispatch(reset());
     }, [isError, isLoading, isSuccess, message, otpResp, navigate, dispatch]);
@@ -36,13 +39,15 @@ function App(props) {
     const [imageUrl, setImageUrl] = useState('');
     const [file, setFile] = useState()
     // const [result, setResult] = useState()
-    const [error, setError] = useState(false)
+    // const [error, setError] = useState(false)
     const generateQrCode = async () => {
         try {
             const response = await QRCode.toDataURL(user.email);
             setImageUrl(response);
         } catch (error) {
             console.log(error);
+            toast('Cannot Generate QR Code')
+
         }
     }
     const handleScanImage = (e) => {
@@ -50,8 +55,16 @@ function App(props) {
 
     }
     const handleSubmit = () => {
-        QrScanner.scanImage(file).then((res) => props.setResult(res)).catch((err) => setError(true))
+        QrScanner.scanImage(file).then((res) => {
+            props.setResult(res)
+            toast('Done!!')
+        }).catch((err) => {
+
+            toast('No QRCode Found')
+        })
     }
+
+
     if (isLoading) {
         return (
             <div>
@@ -60,25 +73,27 @@ function App(props) {
         )
     }
     return (
-        <div>
+        <div className='ml-96 my-56'>
+
 
             {/* <input label="Enter Text Here" onChange={(e) => setText(e.target.value)} /> */}
-            <button onClick={() => generateQrCode()}>Generate</button>
+            <p className='text-lg'>Enter the Generate button below</p>
             <br />
+            <button onClick={() => generateQrCode()} className="bg-blue-400 rounded text-white py-2 px-3">Generate</button>
             <br />
             <br />
             {imageUrl ? (
                 <a href={imageUrl} download>
                     <img src={imageUrl} alt="img" />
                 </a>) : null}
-            <br />
-            <br />
-            <br />
             <input type="file" onChange={handleScanImage} />
-            <button onClick={handleSubmit}>Scan Image</button>
-            <p>{props.result}</p>
-            <p>{error && "No Qrcode found"}</p>
-            <button onClick={sendOTP}>Send OTP</button>
+            <br />
+            <br />
+            <button onClick={handleSubmit} className="bg-gray-600 text-white rounded px-3 py-2">Scan Image</button>
+
+            <br />
+            <br />
+            <button onClick={sendOTP} className="bg-green-600 text-white rounded px-3 py-2">Send OTP</button>
 
         </div>
     );

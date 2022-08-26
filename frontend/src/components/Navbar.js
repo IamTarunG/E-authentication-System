@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
 
-function Navbar(props) {
+function Navbar() {
   const { user } = useSelector((state) => state.auth);
   // const { otpResp, isLoading } = useSelector((state) => state.otp)
   // const { verifyResp } = useSelector((state) => state.verifyOTP)
@@ -16,18 +16,18 @@ function Navbar(props) {
     navigate("/");
   };
   return (
-    <div className="bg-red-400 flex justify-evenly h-10 items-center">
-      <Link to="/" className="text-xl">
+    <div className="flex justify-evenly py-6 ring-1 ring-black ring-opacity-5 focus:outline-none rounded-md shadow-lg bg-white">
+      <Link to="/" className="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md font-semibold text-xl">
         Books
       </Link>
       {user ? (
-        <button onClick={onLogout}>Logout</button>
+        <button onClick={onLogout} className="text-gray-800 hover:bg-red-400 hover:text-white block px-3 py-2 rounded-md font-semibold text-lg">Logout</button>
       ) : (
-        <div className=" w-1/2 flex justify-evenly">
-          <Link to="/signup" className="text-lg">
+        <div className="flex justify-evenly w-1/2">
+          <Link to="/signup" className="text-gray-600 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             Register
           </Link>
-          <Link to="/login" className="text-lg">
+          <Link to="/login" className="text-gray-600 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             Login
           </Link>
         </div>
