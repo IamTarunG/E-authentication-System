@@ -77,7 +77,7 @@ function App(props) {
 
 
             {/* <input label="Enter Text Here" onChange={(e) => setText(e.target.value)} /> */}
-            <p className='text-lg'>Enter the Generate button below</p>
+            <p className='text-lg'>Click the generate button below to generate QR Code</p>
             <br />
             <button onClick={() => generateQrCode()} className="bg-blue-400 rounded text-white py-2 px-3">Generate</button>
             <br />

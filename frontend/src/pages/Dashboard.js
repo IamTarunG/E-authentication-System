@@ -24,25 +24,45 @@ function Dashboard() {
         Welcome {user && user.name}
       </h2>
       <BookForm />
-      {books.map((book) => {
-        return (
-          <div key={book._id} className="flex justify-evenly items-center my-5">
-            <p>{book.title}</p>
-            <p>{book.author}</p>
-            <p>{book.price}</p>
-            <div>{new Date(book.createdAt).toLocaleString("en-US")}</div>
-            <button
-              onClick={() => dispatch(deleteBook(book._id))}
-              className="bg-red-400 px-6 py-1 text-white font-bold rounded-sm"
-            >
-              Delete
-            </button>
 
-            <hr />
-          </div>
-        );
-      })}
-    </div>
+
+      <table class="table w-full">
+
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            books.map((book) => {
+              return (
+                <tr key={book._id}>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>{book.price}</td>
+                  <td>{new Date(book.createdAt).toLocaleString("en-US")}</td>
+                  <td><button
+                    onClick={() => dispatch(deleteBook(book._id))}
+                    className="bg-red-400 px-6 py-1 text-black font-bold rounded-sm"
+                  >
+                    Delete
+                  </button></td>
+                </tr>
+              )
+            })
+          }
+
+        </tbody>
+      </table>
+
+
+
+    </div >
   );
 }
 
