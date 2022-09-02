@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import { getBooks, deleteBook } from "../features/books/bookSlice";
 import Navbar from "../components/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
 function Dashboard() {
 
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ function Dashboard() {
     if (!user) {
       navigate("/login");
     }
+    // if (isSuccess || user) {
+    //   toast('Logged In Successfully')
+    // }
     dispatch(getBooks());
   }, [navigate, books, isError, message, dispatch, user]);
 

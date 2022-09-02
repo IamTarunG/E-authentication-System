@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { login, reset } from "../features/auth/authSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "../components/Spinner";
 function Login() {
@@ -40,7 +40,7 @@ function Login() {
     <>
       <Navbar />
       <div className="flex flex-col h-screen justify-evenly items-center">
-        <p className="text-2xl">E authentication System</p>
+        <p className="text-2xl">E-Authentication System</p>
         <div className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-72 justify-evenly w-1/5">
           <input
             type="text"
@@ -66,7 +66,6 @@ function Login() {
           </button>
         </div>
 
-        <ToastContainer />
       </div>
     </>
   );

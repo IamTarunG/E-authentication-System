@@ -34,6 +34,7 @@ function Verify(props) {
     const verifyUser = () => {
         if (otpResp.otp === props.otp && props.result === user.email) {
             navigate('/', { replace: false })
+            toast('Logged in Successfully')
         }
         else {
             console.log('Wrong QRcode or otp')

@@ -25,7 +25,7 @@ function App(props) {
         if (isSuccess || otpResp) {
             console.log(otpResp)
 
-
+            dispatch(reset())
 
         }
         dispatch(reset());
