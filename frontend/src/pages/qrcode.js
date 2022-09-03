@@ -23,7 +23,7 @@ function App(props) {
             console.log(message);
         }
         if (isSuccess || otpResp) {
-            console.log(otpResp)
+
 
             dispatch(reset())
 
@@ -31,7 +31,7 @@ function App(props) {
         dispatch(reset());
     }, [isError, isLoading, isSuccess, message, otpResp, navigate, dispatch]);
     const sendOTP = () => {
-        console.log(otpResp)
+
         dispatch(getOTP())
         navigate("/verify");
 
