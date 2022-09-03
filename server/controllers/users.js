@@ -76,6 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
     return res.status(400).json(error.message);
   }
 });
+
 const sendOTP = (req, res) => {
   console.log(req.user.email)
   otp = genOTP()
