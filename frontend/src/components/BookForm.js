@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createBook } from "../features/books/bookSlice";
 
-function GoalForm() {
+function BookForm() {
   const [bookData, setBookData] = useState({
     title: "",
     author: "",
@@ -50,7 +50,7 @@ function GoalForm() {
         />
         <button
           onClick={addBook}
-          className="bg-blue-400 px-6 py-1 text-white font-bold rounded-sm"
+          className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         >
           Add Book
         </button>
@@ -59,4 +59,4 @@ function GoalForm() {
   );
 }
 
-export default GoalForm;
+export default BookForm;

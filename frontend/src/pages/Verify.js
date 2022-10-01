@@ -58,7 +58,7 @@ function Verify(props) {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 {/* <button onClick={resend}>Resend</button> */}
-                <button onClick={verifyUser} className="bg-green-600 text-white rounded px-3 py-2">Verify</button>
+                <button onClick={verifyUser} className="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Verify</button>
             </div>
         </div>
     )

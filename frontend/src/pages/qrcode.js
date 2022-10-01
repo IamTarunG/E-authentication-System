@@ -78,7 +78,7 @@ function App(props) {
             {/* <input label="Enter Text Here" onChange={(e) => setText(e.target.value)} /> */}
             <p className='text-lg'>Click the generate button below to generate QR Code</p>
             <br />
-            <button onClick={() => generateQrCode()} className="bg-blue-400 rounded text-white py-2 px-3">Generate</button>
+            <button onClick={() => generateQrCode()} className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Generate</button>
             <br />
             <br />
             {imageUrl ? (
@@ -88,11 +88,11 @@ function App(props) {
             <input type="file" onChange={handleScanImage} />
             <br />
             <br />
-            <button onClick={handleSubmit} className="bg-gray-600 text-white rounded px-3 py-2">Scan Image</button>
+            <button onClick={handleSubmit} className="inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">Scan Image</button>
 
             <br />
             <br />
-            <button onClick={sendOTP} className="bg-green-600 text-white rounded px-3 py-2">Send OTP</button>
+            <button onClick={sendOTP} className="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Send OTP</button>
 
         </div>
     );
