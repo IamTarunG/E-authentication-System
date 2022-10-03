@@ -11,21 +11,26 @@ function Login() {
     email: "",
     password: "",
   });
-  const { isSuccess, isError, isLoading, user, message } = useSelector(
-    (state) => state.auth
-  );
+  const state = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-      toast(message)
+    if (state.isError) {
+      console.log(state.message);
+      toast(state.message)
     }
-    if (isSuccess || user) {
+    if (state.isSuccess || state.user) {
       navigate("/auth");
     }
     dispatch(reset());
-  }, [isError, isLoading, isSuccess, message, user, navigate, dispatch]);
+  }, [
+    state.message,
+    state.isError,
+    state.isSuccess,
+    dispatch,
+    navigate,
+    state.user,
+  ]);
   const onLogin = () => {
     const userData = {
       email: formData.email,
@@ -33,8 +38,8 @@ function Login() {
     };
     dispatch(login(userData));
   };
-  if (isLoading) {
-    return <Spinner />
+  if (state.isLoading) {
+    return <Spinner />;
   }
   return (
     <>
